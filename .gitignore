@@ -1,3 +1,5 @@
+# These re those files which are not want to come in git while build the project (like env folder, etc) 
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
