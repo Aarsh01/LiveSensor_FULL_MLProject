@@ -91,9 +91,9 @@ Error occured and the file name is [d:\Bakchodi\LiveSensor\LiveSensor_FULL_MLPro
 1. make .env file paste the mongoDB connection url with the name of "MONGO_DB_URL"
 2. to have the access of the file install "load_dotenv" library and write code in __init__.py file in sensor folder 
 3. Build 2 python file in sensor i.e "config.py" and "utils.py"
-4. a. In config file:
-      a.1. The code is designed to encapsulate the retrieval of a MongoDB connection URL from an environment variable,
-      a.2. Establish a connection to a MongoDB database using that URL.
+4. a. In config file:/n
+      - a.1. The code is designed to encapsulate the retrieval of a MongoDB connection URL from an environment variable,
+      - a.2. Establish a connection to a MongoDB database using that URL.
    b. In utils file:
       b.1 It define a function, which help us to load the dataset into the mongoDB cluster. 
 5. After that import them in main.py 
