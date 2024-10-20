@@ -42,7 +42,7 @@
 
 ********************************************************************************************************************************************
 
-# In mainpy & logger.py
+# In main.py & logger.py
 
     from sensor.exception import SensorException
     import sys
