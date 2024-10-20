@@ -6,10 +6,10 @@ from setuptools import find_packages, setup
 # # setup: provide me the information  
 from typing import List
 
-# def get_requirements() -> List[str]:
-#     with open('requirements.txt', 'r') as f:
-#         requirements_list = [line.strip() for line in f]
-#     return requirements_list
+def get_requirements() -> List[str]:
+    with open('requirement.txt', 'r') as f:
+        requirements_list = [line.strip() for line in f]
+    return requirements_list
 
 setup(
     name='sensor',
@@ -17,5 +17,5 @@ setup(
     author='aarsh',
     author_email='aarshmehtani01@gmail.com',
     packages=find_packages(),
-    install_requires=['pymongo'] #get_requirements(),
+    install_requires=get_requirements() #["pymongo"],
 )
