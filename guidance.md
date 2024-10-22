@@ -35,10 +35,10 @@
         except Exception as e:
             print(e)
 
-    Output: 
-    PS D:\Bakchodi\LiveSensor> & C:/Users/aarsh/AppData/Local/Programs/Python/Python312/python.exe d:/Bakchodi/LiveSensor/LiveSensor_FULL_MLProject/main.py
-    for reading the .env file
-    Error occured and the file name is [d:\Bakchodi\LiveSensor\LiveSensor_FULL_MLProject\main.py] and the lineNumber is [6] and error is [division by zero]
+Output: 
+PS D:\Bakchodi\LiveSensor> & C:/Users/aarsh/AppData/Local/Programs/Python/Python312/python.exe d:/Bakchodi/LiveSensor/LiveSensor_FULL_MLProject/main.py
+for reading the .env file
+Error occured and the file name is [d:\Bakchodi\LiveSensor\LiveSensor_FULL_MLProject\main.py] and the lineNumber is [6] and error is [division by zero]
 
 ********************************************************************************************************************************************
 
@@ -108,18 +108,47 @@ Error occured and the file name is [d:\Bakchodi\LiveSensor\LiveSensor_FULL_MLPro
 
 ### Step - 1: Data Ingestion
     - Decide the variables in "sensor.constant.training_pipeline.__init__.py" 
-    - Do the coding stuff in 2 files i.e "config_entity.py" and then "artifact_entity.py".
+    - Do the coding stuff in 2 files in sensor.entity folder i.e "config_entity.py" and then "artifact_entity.py".
 
     - In config_entity.py file: class name "DataIngestionConfig"
         a. set the path from artifacts to train.csv, test.csv, sensor.csv datasets. It is well explained there. 
 
     - In artifact_entity.py: class name "DataIngestionArtifact"
         a. Straightforward way to encapsulate the paths of training and testing datasets in a structured manner.
-    
-    - Now coming to sensor.configuration.mongodb_db_connection :
 
-    - Now coming to sensor.data_access.sensor_data :
-
-    - Now coming to sensor.component.data_ingestion.py :
+    - **To build the file "sensor.component.data_ingestion.py", we have 2 files ready:
+        1. files in sensor.entity folder,
+        2. mongoDb connection to have the dataset from mongoDB server that we have loaded with the help of two files: 
+            2.1. sensor.config.py
+            2.2. sensor.utils.py
+        
+        # Files in sensor.entity folder - Done
+        # MongoDb connection:
+            a. assign the keys in sensor.constant.env_variables.py (like - MONGODB_URL_KEY, AWS_ACCESS_KEY_ID_ENV_KEY, AWS_SECRET_ACCESS_KEY_ENV_KEY, REGION_NAME)
+            
+            b. assign the name of (DATABASE_NAME, COLLECTION_NAME) in sensor.constant.database.py. It should be same as that of the name when loading data in mongoDB cluster0. 
+            
+            c. Now coming to sensor.configuration.mongodb_db_connection :
+                1. Loads the MongoDB URL from environment variables.
+                2. Connects to the database, handling both local and secure connections.
+                3. Provides access to the specified database while logging any errors that may occur during the initialization process.
+            
+            d. Now coming to sensor.data_access.sensor_data :
+                1. The SensorData class serves as a bridge between a MongoDB database and Pandas DataFrames, enabling:
+                    1.1. Data Import: Users can easily import data from CSV files into MongoDB, which is useful for data ingestion processes.
+                    1.2. Data Export: Users can export entire collections from MongoDB into DataFrames, facilitating data analysis and manipulation using Pandas.
+            
+            e. Now coming to sensor.component.data_ingestion.py :
+                1. Integrate Data Sources: Facilitate the extraction of data from a MongoDB database and prepare it for machine learning workflows.
+                2. Data Management: Handle the ingestion of data, including exporting it to a feature store and splitting it into training and testing sets.
+                3. Artifact Management: Create artifacts that can be used later in the machine learning pipeline for model training and evaluation.
+            
+            f. Now coming to sensor.pipeline.training_pipeline.py :
+                1. Manage the Training Pipeline: It orchestrates the various components of the training pipeline, starting with data ingestion.
+                2. Streamline Data Preparation: By encapsulating the data ingestion process, it simplifies the workflow of preparing data for machine learning.
+                3. Error Handling: It provides a structured way to handle exceptions that may arise during the pipeline execution
+            e. Now run the main.py file, then artifacts ki ek folder build hoga.
+        
+        * Use the mongoDB_URL_KEY of Prince Katriya Sir, mine not working. Why? NOT KNOWN!
 
 
